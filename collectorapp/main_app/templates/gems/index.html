@@ -4,14 +4,16 @@
 <h1>Gem List</h1>
 
 {% for gem in gems %}
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ gem.gem_type }}</span>
-            <p>Color: {{ gem.color }}</p>
-            <p>Location Found: {{ gem.location_found }}</p>
-            <p>Date Found: {{ gem.date_found }}</p>
+    <a href="{% url 'detail' gem.id %}">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ gem.gem_type }}</span>
+                <p>Color: {{ gem.color }}</p>
+                <p>Location Found: {{ gem.location_found }}</p>
+                <p>Date Found: {{ gem.date_found }}</p>
+            </div>
         </div>
-    </div>
+    </a>
 {% endfor %}
 
 {% endblock %}
