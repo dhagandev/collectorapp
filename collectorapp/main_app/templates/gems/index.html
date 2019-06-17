@@ -12,6 +12,10 @@
                 <p>Location Found: {{ gem.location_found }}</p>
                 <p>Date Found: {{ gem.date_found }}</p>
             </div>
+            <div class="card-action">
+                <a href="{% url 'gems_update' gem.id %}">Edit</a>
+                <a href="{% url 'gems_delete' gem.id %}">Delete</a>
+            </div>
         </div>
     </a>
 {% endfor %}

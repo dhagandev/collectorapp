@@ -3,13 +3,59 @@
 
 <h1>Gem Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ gem.gem_type }}</span>
-    <p>Color: {{ gem.color }}</p>
-    <p>Location Found: {{ gem.location_found }}</p>
-    <p>Date Found: {{ gem.date_found }}</p>
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ gem.gem_type }}</span>
+        <p>Color: {{ gem.color }}</p>
+        <p>Location Found: {{ gem.location_found }}</p>
+        <p>Date Found: {{ gem.date_found }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'gems_update' gem.id %}">Edit</a>
+        <a href="{% url 'gems_delete' gem.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s6">
+    <form  action="{% url 'add_display' gem.id %}" method="post">
+      {% csrf_token %}
+      {{ display_form.as_p }}
+      <input type="submit" class="btn" value="Add Display">
+    </form>
+  </div>
+
+  <div class="col s6">
+    <table class="striped">
+      <thead>
+        <tr><th>Date Shown</th><th>Offer</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        {% for display in gem.display_set.all %}
+          <tr>
+            <td>{{display.date_shown}}</td>
+            <td>{{display.highest_offer}}</td>
+            <td>{{display.status}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 
+
+<script>
+  var dateEl = document.getElementById('id_date_shown');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  var selectEl = document.getElementById('id_status');
+  M.FormSelect.init(selectEl);
+</script>
 {% endblock %}
