@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Emotion List</h1>
+
+{% for emotion in emotion_list %}
+  <a href="{% url 'emotion_detail' emotion.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ emotion.word }}</span>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
