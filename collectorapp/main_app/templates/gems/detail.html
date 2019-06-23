@@ -56,6 +56,12 @@
               A feeling of {{ emo.word }}
             </span>
           </div>
+          <div class="card-action">
+            <form action="{% url 'unassoc_emotion' gem.id emo.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn">Remove</button>
+            </form>
+          </div>
         </div>
       {% endfor %}
     {% else %}

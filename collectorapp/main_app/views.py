@@ -31,9 +31,12 @@ def gems_index(request):
 def gems_detail(request, gem_id):
     gem = Gem.objects.get(id=gem_id)
     display_form = DisplayForm()
+    emotions_gem_not_have = Emotion.objects.exclude(
+        id__in=gem.emotions.all().values_list('id'))
     return render(request, 'gems/detail.html', {
-        'gem': gem, 
-        'display_form': display_form
+        'gem': gem,
+        'display_form': display_form,
+        'emotions': emotions_gem_not_have
     })
 
 def add_display(request, gem_id):
