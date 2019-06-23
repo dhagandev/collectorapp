@@ -17,4 +17,5 @@ urlpatterns = [
     path('emotions/create/', views.EmotionCreate.as_view(), name='emotion_create'),
     path('emotions/<int:pk>/update/', views.EmotionUpdate.as_view(), name='emotion_update'),
     path('emotions/<int:pk>/delete/', views.EmotionDelete.as_view(), name='emotion_delete'),
+    path('accounts/signup', views.signup, name='signup')
 ]

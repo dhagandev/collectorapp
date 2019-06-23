@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 import datetime
 
 STATUS_ENUM = (
@@ -24,6 +25,7 @@ class Gem(models.Model):
     location_found = models.CharField(max_length=100)
     date_found = models.DateField('date found')
     emotions = models.ManyToManyField(Emotion)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.color + " " + self.gem_type
